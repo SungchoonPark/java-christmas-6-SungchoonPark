@@ -25,7 +25,6 @@ public class MenuAndNumValidator extends Validator {
     private void validateMenuAndNumFormat(String menuAndNum) {
         List<String> orders = splitOrders(menuAndNum);
         for (String order : orders) {
-            System.out.println("order = " + order);
             if(!isValidOrderFormat(order)) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
             }
