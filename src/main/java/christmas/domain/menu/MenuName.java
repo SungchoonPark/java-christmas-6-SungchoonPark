@@ -11,4 +11,8 @@ public class MenuName {
     public static MenuName from(String menuName) {
         return new MenuName(menuName);
     }
+
+    public String getMenuName() {
+        return menuName;
+    }
 }

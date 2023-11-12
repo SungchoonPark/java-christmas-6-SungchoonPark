@@ -14,4 +14,5 @@ public class Order {
     public static Order of(Menu menu, MenuNum menuNum) {
         return new Order(menu, menuNum);
     }
+
 }

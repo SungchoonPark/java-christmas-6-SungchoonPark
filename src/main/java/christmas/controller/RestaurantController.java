@@ -1,5 +1,7 @@
 package christmas.controller;
 
+import christmas.domain.customer.VisitDate;
+import christmas.domain.order.Orders;
 import christmas.service.EventService;
 import christmas.service.RestaurantService;
 import christmas.view.InputView;
@@ -18,5 +20,33 @@ public class RestaurantController {
         this.eventService = eventService;
     }
 
-    public void run() {}
+    public void run() {
+        inputView.printInitialMessage();
+        createCustomerInfo();
+    }
+
+    public void createCustomerInfo() {
+        restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
+    }
+
+    public VisitDate createVisitDate() {
+        while(true) {
+            try {
+                return restaurantService.createVisitDate(Integer.parseInt(inputView.readVisitDate()));
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    public Orders createOrdersFromMenuAndNum() {
+        while(true) {
+            try {
+                String inputMenuAndNum = inputView.readMenuAndNum();
+                return restaurantService.splitMenuAndNum(inputMenuAndNum);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
 }

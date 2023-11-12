@@ -16,4 +16,8 @@ public class Menu {
     public static Menu of(String menuName, int menuPrice, MenuType menuType) {
         return new Menu(menuName, menuPrice, menuType);
     }
+
+    public String getMenuName() {
+        return menuName.getMenuName();
+    }
 }

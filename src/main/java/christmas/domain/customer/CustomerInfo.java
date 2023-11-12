@@ -6,15 +6,20 @@ import christmas.domain.order.Orders;
 import java.util.List;
 
 public class CustomerInfo {
-    private Orders orders;
     private VisitDate visitDate;
+    private Orders orders;
 
-    private CustomerInfo(List<Order> orders, int visitDate) {
-        this.orders = Orders.from(orders);
-        this.visitDate = VisitDate.from(visitDate);
+    private CustomerInfo(VisitDate visitDate, Orders orders) {
+        this.visitDate = visitDate;
+        this.orders = orders;
     }
 
-    public static CustomerInfo of(List<Order> orders, int visitDate) {
-        return new CustomerInfo(orders, visitDate);
+    public static CustomerInfo of(VisitDate visitDate, Orders orders) {
+        return new CustomerInfo(visitDate, orders);
+    }
+
+    @Override
+    public String toString() {
+        return orders.toString() + "\n" + visitDate.getVisitDate();
     }
 }
