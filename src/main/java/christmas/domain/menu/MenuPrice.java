@@ -10,4 +10,8 @@ public class MenuPrice {
     public static MenuPrice from(int menuPrice) {
         return new MenuPrice(menuPrice);
     }
+
+    public int getMenuPrice() {
+        return menuPrice;
+    }
 }
