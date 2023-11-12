@@ -25,10 +25,6 @@ public class RestaurantController {
         createCustomerInfo();
     }
 
-    public void createCustomerInfo() {
-        restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
-    }
-
     public VisitDate createVisitDate() {
         while(true) {
             try {
@@ -43,10 +39,14 @@ public class RestaurantController {
         while(true) {
             try {
                 String inputMenuAndNum = inputView.readMenuAndNum();
-                return restaurantService.splitMenuAndNum(inputMenuAndNum);
+                return restaurantService.createOrders(inputMenuAndNum);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
+    }
+
+    public void createCustomerInfo() {
+        restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
     }
 }

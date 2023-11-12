@@ -7,6 +7,7 @@ import christmas.domain.menu.Menu;
 import christmas.domain.menu.Menus;
 import christmas.domain.order.MenuNum;
 import christmas.domain.order.Order;
+import christmas.domain.order.OrderStatus;
 import christmas.domain.order.Orders;
 import christmas.validator.MenuAndNumValidator;
 
@@ -14,17 +15,21 @@ import java.util.*;
 
 
 public class RestaurantService {
-    private CustomerInfo  customerInfo;
+    private CustomerInfo customerInfo;
     private Menus menus;
+    private final OrderStatus orderStatus;
+
     public RestaurantService() {
         menus = Menus.getInstance();
+        orderStatus = new OrderStatus();
     }
 
     public VisitDate createVisitDate(int visitDate) {
         return VisitDate.from(visitDate);
     }
 
-    public Orders splitMenuAndNum(String menuAndNum) {
+    // 메서드 역할에 맞는 네이밍이 필요함
+    public Orders createOrders(String menuAndNum) {
         List<String> inputMenuAndNums = Arrays.stream(menuAndNum.split(",")).toList();
 
         Map<String, Integer> splittedMenuAndNum = new HashMap<>();
@@ -36,19 +41,25 @@ public class RestaurantService {
         }
         MenuAndNumValidator.validateMenuNumBound(menuNumCnt);
 
-        if(inputMenuAndNums.size() != splittedMenuAndNum.size()) {
+        if (inputMenuAndNums.size() != splittedMenuAndNum.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
         }
 
         List<Order> orders = new ArrayList<>();
-        for(Map.Entry<String, Integer> splitCustomerOrder: splittedMenuAndNum.entrySet()) {
+        for (Map.Entry<String, Integer> splitCustomerOrder : splittedMenuAndNum.entrySet()) {
             // 아래의 1 2 번으로 이미 유효성 검사가 끝나야 하며 CustomerInfo를 만들기 전에 재입력 받아야함
             // 1. Key를 이용하여 Menu객체 리턴받기
             Menu menu = getMenuByMenuName(splitCustomerOrder.getKey());
+            // 1.5 MenuType을 통해 체킹
+            orderStatus.updateMenuTypeNum(menu.getMenuType());
             // 2. MenuNum 객체 생성
             MenuNum menuNum = MenuNum.from(splitCustomerOrder.getValue());
             // 이 두개로 Order객체 만들기
             orders.add(Order.of(menu, menuNum));
+        }
+
+        if (orderStatus.isOnlyDrink()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
         }
 
         return Orders.from(orders);
@@ -60,7 +71,7 @@ public class RestaurantService {
 
     public Menu getMenuByMenuName(String menuName) {
         Optional<Menu> menuByMenuName = menus.getMenuByMenuName(menuName);
-        if(menuByMenuName.isEmpty()) {
+        if (menuByMenuName.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
         }
         return menuByMenuName.get();

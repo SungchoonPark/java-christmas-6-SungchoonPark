@@ -20,4 +20,8 @@ public class Menu {
     public String getMenuName() {
         return menuName.getMenuName();
     }
+
+    public MenuType getMenuType() {
+        return menuType;
+    }
 }
