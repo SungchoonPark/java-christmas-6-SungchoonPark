@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MenuAndNumValidator extends Validator {
-    private static final Pattern VALID_MENU_AND_NUM_SEPARATOR = Pattern.compile("^[가-힣0-9-]+$");
+    private static final Pattern VALID_MENU_AND_NUM = Pattern.compile("^([가-힣]+)-([0-9]+)$");
 
     @Override
     public void validate(String inputMenuAndNum) {
@@ -36,7 +36,7 @@ public class MenuAndNumValidator extends Validator {
     }
     
     private boolean isValidOrderFormat(String order) {
-        Matcher matcher = VALID_MENU_AND_NUM_SEPARATOR.matcher(order);
+        Matcher matcher = VALID_MENU_AND_NUM.matcher(order);
         return matcher.matches();
     }
 
