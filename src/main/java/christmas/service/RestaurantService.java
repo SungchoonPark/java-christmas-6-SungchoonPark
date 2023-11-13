@@ -89,6 +89,13 @@ public class RestaurantService {
         return eventHandler.getTotalBenefitAmount();
     }
 
+    public Map<String, Integer> getBenefits() {
+        return eventHandler.getBenefits();
+    }
+
+    public Map<String, Integer> getOrderList() {
+        return customerInfo.getOrderList();
+    }
 
 
 }

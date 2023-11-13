@@ -1,6 +1,5 @@
 package christmas.domain.menu;
 
-import christmas.constant.ErrorMessage;
 import christmas.constant.MenuType;
 
 import java.util.*;

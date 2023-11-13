@@ -2,7 +2,6 @@ package christmas.controller;
 
 import christmas.domain.customer.VisitDate;
 import christmas.domain.order.Orders;
-import christmas.service.EventService;
 import christmas.service.RestaurantService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -11,7 +10,6 @@ public class RestaurantController {
     private InputView inputView;
     private OutputView outputView;
     private RestaurantService restaurantService;
-//    private EventService eventService;
 
     public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
         this.inputView = inputView;
@@ -23,7 +21,7 @@ public class RestaurantController {
         inputView.printInitialMessage();
         createCustomerInfo();
         applyDiscount();
-        getTotalBenefitAmount();
+        printApplyEvent();
     }
 
     public VisitDate createVisitDate() {
@@ -55,7 +53,46 @@ public class RestaurantController {
         restaurantService.applyDiscount();
     }
 
-    public void getTotalBenefitAmount() {
+    public void printApplyEvent() {
+        printPreviewMessage();
+        printOrders();
+        printTotalOrderAmountWithoutDiscount();
+        printGiveawayMenu();
+        printBenefits();
+        printTotalBenefitAmount();
+        printExpectedPaymentAmount();
+        printEventBadge();
+    }
+
+    public void printPreviewMessage() {
+        outputView.printBenefitPreview();
+    }
+
+    public void printOrders() {
+        outputView.printOrders(restaurantService.getOrderList());
+    }
+
+    public void printTotalOrderAmountWithoutDiscount() {
+        outputView.printTotalOrderAmountWithoutDiscount(0);
+    }
+
+    public void printGiveawayMenu() {
+        outputView.printGiveawayMenu();
+    }
+
+    public void printTotalBenefitAmount() {
         outputView.printTotalBenefitAmount(restaurantService.getTotalBenefitAmount());
+    }
+
+    public void printBenefits() {
+        outputView.printBenefits(restaurantService.getBenefits());
+    }
+
+    public void printExpectedPaymentAmount() {
+        outputView.printExpectedPaymentAmount(0);
+    }
+
+    public void printEventBadge() {
+        outputView.printEventBadge("badge");
     }
 }

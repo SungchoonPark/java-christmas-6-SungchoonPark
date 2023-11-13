@@ -92,17 +92,14 @@ public class EventHandler {
     /***
      * 각 이벤트의 할인액 구하기
      */
-//    public Map<String, Integer> getBenefit() {
-//        Map<String, Integer> applyEvent = new HashMap<>();
-//
-//    }
+    public Map<String, Integer> getBenefits() {
+        return eventStatus.getEachApplyEvent();
+    }
 
     /***
      * 할인 총액 구하기
      */
     public int getTotalBenefitAmount() {
-        // eventStatus싹 돌면서 거기에 갯수 저장되어있으니까
-        // eventType에 저장되어있는 price랑 곱해서 나타내면 구하면 될듯?
         return eventStatus.getTotalBenefitAmount();
     }
 

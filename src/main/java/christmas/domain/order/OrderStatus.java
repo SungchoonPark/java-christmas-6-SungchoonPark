@@ -27,6 +27,4 @@ public class OrderStatus {
         }
         return true;
     }
-
-
 }

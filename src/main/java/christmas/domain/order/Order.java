@@ -20,6 +20,10 @@ public class Order {
         return menu.getMenuPrice() * menuNum.getMenuNum();
     }
 
+    public String getMenuName() {
+        return menu.getMenuName();
+    }
+
     public int getMenuNum() {
         return menuNum.getMenuNum();
     }

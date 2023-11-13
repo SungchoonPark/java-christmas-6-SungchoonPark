@@ -4,6 +4,7 @@ import christmas.constant.MenuType;
 import christmas.domain.order.Orders;
 
 import java.time.DayOfWeek;
+import java.util.Map;
 
 public class CustomerInfo {
     private static final int MIN_EVENT_APPLY_AMOUNT = 10000;
@@ -56,5 +57,9 @@ public class CustomerInfo {
 
     public boolean isSpecialDay() {
         return visitDate.isSpecialDay();
+    }
+
+    public Map<String, Integer> getOrderList() {
+        return orders.getOrderList();
     }
 }
