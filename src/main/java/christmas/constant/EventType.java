@@ -18,7 +18,10 @@ public enum EventType {
         return eventName;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getEventAmount(EventType eventType, int applyNum) {
+        if(eventType == EventType.CHRISTMAS_DDAY) {
+            return (amount * applyNum) - 1000;
+        }
+        return amount * applyNum;
     }
 }

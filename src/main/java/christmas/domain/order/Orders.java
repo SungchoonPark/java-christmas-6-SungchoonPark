@@ -22,8 +22,9 @@ public class Orders {
     }
 
     public int getOrderNumByMenuType(MenuType menuType) {
-        return (int) orders.stream()
+        return orders.stream()
                 .filter(order -> order.isMatchMenuType(menuType))
-                .count();
+                .mapToInt(Order::getMenuNum)
+                .sum();
     }
 }

@@ -17,12 +17,13 @@ public class RestaurantController {
         this.inputView = inputView;
         this.outputView = outputView;
         this.restaurantService = restaurantService;
-//        this.eventService = eventService;
     }
 
     public void run() {
         inputView.printInitialMessage();
         createCustomerInfo();
+        applyDiscount();
+        getTotalBenefitAmount();
     }
 
     public VisitDate createVisitDate() {
@@ -48,5 +49,13 @@ public class RestaurantController {
 
     public void createCustomerInfo() {
         restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
+    }
+
+    public void applyDiscount() {
+        restaurantService.applyDiscount();
+    }
+
+    public void getTotalBenefitAmount() {
+        outputView.printTotalBenefitAmount(restaurantService.getTotalBenefitAmount());
     }
 }

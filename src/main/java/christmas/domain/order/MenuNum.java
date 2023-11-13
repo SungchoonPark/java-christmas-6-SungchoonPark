@@ -10,4 +10,8 @@ public class MenuNum {
     public static MenuNum from(int menuNum) {
         return new MenuNum(menuNum);
     }
+
+    public int getMenuNum() {
+        return menuNum;
+    }
 }

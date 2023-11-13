@@ -81,6 +81,14 @@ public class RestaurantService {
         return menuByMenuName.get();
     }
 
+    public void applyDiscount() {
+        eventHandler.applyDiscount(customerInfo);
+    }
+
+    public int getTotalBenefitAmount() {
+        return eventHandler.getTotalBenefitAmount();
+    }
+
 
 
 }

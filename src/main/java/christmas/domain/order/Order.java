@@ -17,7 +17,11 @@ public class Order {
     }
 
     public int getOrderAmount() {
-        return menu.getMenuPrice();
+        return menu.getMenuPrice() * menuNum.getMenuNum();
+    }
+
+    public int getMenuNum() {
+        return menuNum.getMenuNum();
     }
 
     public boolean isMatchMenuType(MenuType menuType) {

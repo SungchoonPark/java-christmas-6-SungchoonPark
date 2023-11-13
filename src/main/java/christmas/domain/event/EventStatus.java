@@ -20,5 +20,15 @@ public class EventStatus {
         eventStatus.put(eventType, eventStatus.get(eventType) + updateNum);
     }
 
-    // 여기서 총 할인금액 내주면 될듯함
+    public int getTotalBenefitAmount() {
+        int totalAmount = 0;
+        for (EventType eventType : EventType.values()) {
+            int eventAmount = eventType.getEventAmount(eventType, eventStatus.get(eventType));
+//            totalAmount += eventType.getEventAmount(eventType, eventStatus.get(eventType));
+            totalAmount += eventAmount;
+        }
+
+        return totalAmount;
+    }
+
 }

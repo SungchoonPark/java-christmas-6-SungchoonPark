@@ -5,6 +5,9 @@ import christmas.constant.MenuType;
 import christmas.domain.customer.CustomerInfo;
 import christmas.domain.event.EventStatus;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EventHandler {
     /***
      * D-Day 이벤트를 제외한 나머지 이벤트는 12월 내내 진행합니다.
@@ -39,6 +42,7 @@ public class EventHandler {
     public void applyWeekEvent(CustomerInfo customerInfo) {
         if (customerInfo.isVisitDateWeekend()) {
             applyWeekendEvent(customerInfo);
+            return;
         }
         applyWeeklyEvent(customerInfo);
     }
@@ -51,8 +55,6 @@ public class EventHandler {
         updateEventNum(EventType.WEEKDAYS, MenuType.DESSERT, customerInfo);
     }
 
-    //
-
     /***
      *  주말(금 ~ 토) 이벤트 적용 해주는 메서드
      *  메인 메뉴 1개당 2023원 할인
@@ -60,7 +62,6 @@ public class EventHandler {
     public void applyWeekendEvent(CustomerInfo customerInfo) {
         updateEventNum(EventType.WEEKENDS, MenuType.MAIN, customerInfo);
     }
-
     /***
      *  할인 전 총 주문금액이 12만원 이상이면, 샴페인 1개 증정
      */
@@ -80,7 +81,8 @@ public class EventHandler {
     }
 
     private void updateEventNum(EventType eventType, MenuType menuType, CustomerInfo customerInfo) {
-        eventStatus.updateEventTypeNum(eventType, customerInfo.getOrderNumByMenuType(menuType));
+        int orderNumByMenuType = customerInfo.getOrderNumByMenuType(menuType);
+        eventStatus.updateEventTypeNum(eventType, orderNumByMenuType);
     }
 
     private void updateEventNum(EventType eventType, int value) {
@@ -88,7 +90,20 @@ public class EventHandler {
     }
 
     /***
+     * 각 이벤트의 할인액 구하기
+     */
+//    public Map<String, Integer> getBenefit() {
+//        Map<String, Integer> applyEvent = new HashMap<>();
+//
+//    }
+
+    /***
      * 할인 총액 구하기
      */
+    public int getTotalBenefitAmount() {
+        // eventStatus싹 돌면서 거기에 갯수 저장되어있으니까
+        // eventType에 저장되어있는 price랑 곱해서 나타내면 구하면 될듯?
+        return eventStatus.getTotalBenefitAmount();
+    }
 
 }
