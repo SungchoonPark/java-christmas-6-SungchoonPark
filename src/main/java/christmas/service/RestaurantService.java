@@ -3,12 +3,14 @@ package christmas.service;
 import christmas.constant.ErrorMessage;
 import christmas.domain.customer.CustomerInfo;
 import christmas.domain.customer.VisitDate;
+import christmas.domain.event.EventStatus;
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.Menus;
 import christmas.domain.order.MenuNum;
 import christmas.domain.order.Order;
 import christmas.domain.order.OrderStatus;
 import christmas.domain.order.Orders;
+import christmas.handler.EventHandler;
 import christmas.validator.MenuAndNumValidator;
 
 import java.util.*;
@@ -18,10 +20,12 @@ public class RestaurantService {
     private CustomerInfo customerInfo;
     private Menus menus;
     private final OrderStatus orderStatus;
+    private final EventHandler eventHandler;
 
     public RestaurantService() {
         menus = Menus.getInstance();
         orderStatus = new OrderStatus();
+        eventHandler = new EventHandler(new EventStatus());
     }
 
     public VisitDate createVisitDate(int visitDate) {
@@ -76,5 +80,7 @@ public class RestaurantService {
         }
         return menuByMenuName.get();
     }
+
+
 
 }

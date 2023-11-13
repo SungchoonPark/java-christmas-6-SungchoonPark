@@ -15,8 +15,7 @@ public class Application {
         restaurantController = new RestaurantController(
                 new InputView(),
                 new OutputView(),
-                new RestaurantService(),
-                EventService.from(new EventHandler())
+                new RestaurantService()
         );
 
         restaurantController.run();

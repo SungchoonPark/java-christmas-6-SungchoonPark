@@ -24,4 +24,8 @@ public class Menu {
     public MenuType getMenuType() {
         return menuType;
     }
+
+    public int getMenuPrice() {
+        return menuPrice.getMenuPrice();
+    }
 }

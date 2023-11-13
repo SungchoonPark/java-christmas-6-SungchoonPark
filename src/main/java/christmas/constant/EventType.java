@@ -1,7 +1,7 @@
 package christmas.constant;
 
 public enum EventType {
-    CHRISMAS_DDAY("크리스마스 디데이 할인: ", -1000),
+    CHRISTMAS_DDAY("크리스마스 디데이 할인: ", -100),
     WEEKDAYS("평일 할인: ", -2023),
     WEEKENDS("주말 할인: ", -2023),
     SPECIAL_DAY("특별 할인: ", -1000),

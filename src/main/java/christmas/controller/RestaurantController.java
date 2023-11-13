@@ -11,13 +11,13 @@ public class RestaurantController {
     private InputView inputView;
     private OutputView outputView;
     private RestaurantService restaurantService;
-    private EventService eventService;
+//    private EventService eventService;
 
-    public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService, EventService eventService) {
+    public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.restaurantService = restaurantService;
-        this.eventService = eventService;
+//        this.eventService = eventService;
     }
 
     public void run() {

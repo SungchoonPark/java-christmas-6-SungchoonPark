@@ -1,11 +1,13 @@
 package christmas.domain.customer;
 
-import christmas.domain.order.Order;
+import christmas.constant.MenuType;
 import christmas.domain.order.Orders;
 
-import java.util.List;
+import java.time.DayOfWeek;
 
 public class CustomerInfo {
+    private static final int MIN_EVENT_APPLY_AMOUNT = 10000;
+
     private VisitDate visitDate;
     private Orders orders;
 
@@ -18,8 +20,41 @@ public class CustomerInfo {
         return new CustomerInfo(visitDate, orders);
     }
 
-    @Override
-    public String toString() {
-        return orders.toString() + "\n" + visitDate.getVisitDate();
+    public boolean isOverMinAmount() {
+        if (getTotalOrderAmount() > MIN_EVENT_APPLY_AMOUNT) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isVisitDateWeekend() {
+        return visitDate.isVisitDateWeekend();
+    }
+
+    public boolean isOverChristmas() {
+        return visitDate.isOverChristmas();
+    }
+
+    public int getTotalOrderAmount() {
+        return orders.getTotalOrderAmount();
+    }
+
+    public int getDdayEventApplyDay() {
+        return visitDate.calculateDdayEventApplyDay();
+    }
+
+    public int getOrderNumByMenuType(MenuType menuType) {
+        return orders.getOrderNumByMenuType(menuType);
+    }
+
+    public boolean isApplyGiveawayEvent() {
+        if (orders.getTotalOrderAmount() >= 120000) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSpecialDay() {
+        return visitDate.isSpecialDay();
     }
 }
