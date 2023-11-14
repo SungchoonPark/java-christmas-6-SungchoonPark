@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.constant.Badge;
 import christmas.constant.ErrorMessage;
 import christmas.domain.customer.CustomerInfo;
 import christmas.domain.customer.VisitDate;
@@ -86,15 +87,36 @@ public class RestaurantService {
     }
 
     public int getTotalBenefitAmount() {
-        return eventHandler.getTotalBenefitAmount();
+        if(customerInfo.isOverMinAmount()) {
+            return eventHandler.getTotalBenefitAmount();
+        }
+        return 0;
     }
 
     public Map<String, Integer> getBenefits() {
-        return eventHandler.getBenefits();
+        if (customerInfo.isOverMinAmount()) {
+            return eventHandler.getBenefits();
+        }
+        return null;
     }
 
     public Map<String, Integer> getOrderList() {
         return customerInfo.getOrderList();
+    }
+
+    public String getGiveaway() {
+        if (customerInfo.isApplyGiveawayEvent()) {
+            return "샴페인 1개";
+        }
+        return "없음";
+    }
+
+    public int getTotalOrderAmount() {
+        return customerInfo.getTotalOrderAmount();
+    }
+
+    public String getBadge() {
+        return Badge.getBadge(eventHandler.getTotalBenefitAmount());
     }
 
 

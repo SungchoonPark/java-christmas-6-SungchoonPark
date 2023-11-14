@@ -5,12 +5,13 @@ import christmas.constant.ResultMessage;
 import java.util.Map;
 
 public class OutputView {
+    private static final String ERROR = "[ERROR] ";
 
     public OutputView() {
     }
 
     public void printErrorMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+        System.out.println(ERROR + e.getMessage());
     }
 
     public void printBenefitPreview() {
@@ -29,8 +30,9 @@ public class OutputView {
         System.out.println(priceFormatting(totalAmount));
     }
 
-    public void printGiveawayMenu() {
+    public void printGiveawayMenu(String giveaway) {
         System.out.println(ResultMessage.GIVE_MENU.getMessage());
+        System.out.println(giveaway);
     }
 
     public void printBenefits(Map<String, Integer> benefits) {
@@ -38,6 +40,11 @@ public class OutputView {
         for (Map.Entry<String, Integer> benefit : benefits.entrySet()) {
             System.out.println(benefit.getKey() + priceFormatting(benefit.getValue()));
         }
+    }
+
+    public void printBenefits() {
+        System.out.println(ResultMessage.BENEFIT.getMessage());
+        System.out.println("없음");
     }
 
     public void printTotalBenefitAmount(int totalAmount) {

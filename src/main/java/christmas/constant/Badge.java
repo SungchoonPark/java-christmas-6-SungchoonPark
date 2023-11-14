@@ -14,4 +14,18 @@ public enum Badge {
     public String getName() {
         return name;
     }
+
+    public static String getBadge(int totalBenefitAmount) {
+        totalBenefitAmount = Math.abs(totalBenefitAmount);
+        if(totalBenefitAmount >= 5000 && totalBenefitAmount < 10000) {
+            return STAR.name;
+        }
+        if(totalBenefitAmount >= 10000 && totalBenefitAmount < 20000) {
+            return TREE.name;
+        }
+        if(totalBenefitAmount >= 20000) {
+            return SANTA.name;
+        }
+        return MISS.name;
+    }
 }

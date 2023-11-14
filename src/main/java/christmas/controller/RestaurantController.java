@@ -25,7 +25,7 @@ public class RestaurantController {
     }
 
     public VisitDate createVisitDate() {
-        while(true) {
+        while (true) {
             try {
                 return restaurantService.createVisitDate(Integer.parseInt(inputView.readVisitDate()));
             } catch (IllegalArgumentException e) {
@@ -35,7 +35,7 @@ public class RestaurantController {
     }
 
     public Orders createOrdersFromMenuAndNum() {
-        while(true) {
+        while (true) {
             try {
                 String inputMenuAndNum = inputView.readMenuAndNum();
                 return restaurantService.createOrders(inputMenuAndNum);
@@ -73,11 +73,11 @@ public class RestaurantController {
     }
 
     public void printTotalOrderAmountWithoutDiscount() {
-        outputView.printTotalOrderAmountWithoutDiscount(0);
+        outputView.printTotalOrderAmountWithoutDiscount(restaurantService.getTotalOrderAmount());
     }
 
     public void printGiveawayMenu() {
-        outputView.printGiveawayMenu();
+        outputView.printGiveawayMenu(restaurantService.getGiveaway());
     }
 
     public void printTotalBenefitAmount() {
@@ -85,14 +85,26 @@ public class RestaurantController {
     }
 
     public void printBenefits() {
+        if (restaurantService.getBenefits() == null) {
+            outputView.printBenefits();
+            return;
+        }
         outputView.printBenefits(restaurantService.getBenefits());
     }
 
     public void printExpectedPaymentAmount() {
-        outputView.printExpectedPaymentAmount(0);
+        outputView.printExpectedPaymentAmount(
+                expectedPaymentAmount(
+                        restaurantService.getTotalOrderAmount(),
+                        restaurantService.getTotalBenefitAmount()
+                ));
+    }
+
+    private int expectedPaymentAmount(int orderAmount, int benefitAmount) {
+        return orderAmount + benefitAmount;
     }
 
     public void printEventBadge() {
-        outputView.printEventBadge("badge");
+        outputView.printEventBadge(restaurantService.getBadge());
     }
 }
