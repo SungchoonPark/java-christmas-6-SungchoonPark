@@ -1,8 +1,9 @@
 package christmas.validator;
 
 import christmas.constant.ErrorMessage;
+import christmas.constant.NumConstant;
+import christmas.constant.Separator;
 import christmas.domain.order.OrderStatus;
-import christmas.domain.order.Orders;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,8 +14,6 @@ import java.util.regex.Pattern;
 
 public class MenuAndNumValidator extends Validator {
     private static final Pattern VALID_MENU_AND_NUM = Pattern.compile("^([가-힣]+)-([0-9]+)$");
-    private static final String MENU_AND_NUM_SEPARATOR = "-";
-    private static final String ORDER_SEPARATOR = ",";
 
     @Override
     public void validate(String inputMenuAndNum) {
@@ -42,7 +41,7 @@ public class MenuAndNumValidator extends Validator {
 
     public static Map<String, Integer> validateCustomerOrders(List<String> customerOrders) {
         Map<String, Integer> splittedMenuAndNum = new HashMap<>();
-        int menuNumCnt = 0;
+        int menuNumCnt = NumConstant.ZERO.getValue();
 
         processCustomerOrders(customerOrders, splittedMenuAndNum, menuNumCnt);
         validateMenuNumBound(menuNumCnt);
@@ -60,7 +59,7 @@ public class MenuAndNumValidator extends Validator {
     }
 
     public static void validateMenuNumBound(int menuNum) {
-        if(menuNum > 20) {
+        if(menuNum > NumConstant.MAX_ORDER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
         }
     }

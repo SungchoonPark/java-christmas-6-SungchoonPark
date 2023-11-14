@@ -1,5 +1,6 @@
 package christmas.domain.customer;
 
+import christmas.constant.NumConstant;
 import christmas.validator.DateValidator;
 
 import java.time.DayOfWeek;
@@ -21,7 +22,11 @@ public class VisitDate {
     }
 
     public DayOfWeek getDayOfWeek() {
-        LocalDate date = LocalDate.of(THIS_YEAR, THIS_MONTH, visitDate);
+        LocalDate date = LocalDate.of(
+                NumConstant.THIS_YEAR.getValue(),
+                NumConstant.THIS_MONTH.getValue(),
+                visitDate
+        );
         return date.getDayOfWeek();
     }
 
@@ -34,7 +39,7 @@ public class VisitDate {
     }
 
     public boolean isOverChristmas() {
-        if(visitDate > CHRISTMAS_DAY) {
+        if(visitDate > NumConstant.CHRISTMAS_DAY.getValue()) {
             return true;
         }
         return false;
@@ -45,7 +50,7 @@ public class VisitDate {
     }
 
     public boolean isSpecialDay() {
-        if (visitDate == CHRISTMAS_DAY || getDayOfWeek() == DayOfWeek.SUNDAY) {
+        if (visitDate == NumConstant.CHRISTMAS_DAY.getValue() || getDayOfWeek() == DayOfWeek.SUNDAY) {
             return true;
         }
         return false;

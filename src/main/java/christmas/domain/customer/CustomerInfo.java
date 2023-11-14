@@ -1,14 +1,13 @@
 package christmas.domain.customer;
 
 import christmas.constant.MenuType;
+import christmas.constant.NumConstant;
 import christmas.domain.order.Orders;
 
 import java.time.DayOfWeek;
 import java.util.Map;
 
 public class CustomerInfo {
-    private static final int MIN_EVENT_APPLY_AMOUNT = 10000;
-
     private final VisitDate visitDate;
     private final Orders orders;
 
@@ -22,7 +21,7 @@ public class CustomerInfo {
     }
 
     public boolean isOverMinAmount() {
-        if (getTotalOrderAmount() > MIN_EVENT_APPLY_AMOUNT) {
+        if (getTotalOrderAmount() > NumConstant.MIN_EVENT_APPLY_AMOUNT.getValue()) {
             return true;
         }
         return false;
@@ -49,7 +48,7 @@ public class CustomerInfo {
     }
 
     public boolean isApplyGiveawayEvent() {
-        if (orders.getTotalOrderAmount() >= 120000) {
+        if (orders.getTotalOrderAmount() >= NumConstant.MIN_GIVEAWAY_AMOUNT.getValue()) {
             return true;
         }
         return false;
