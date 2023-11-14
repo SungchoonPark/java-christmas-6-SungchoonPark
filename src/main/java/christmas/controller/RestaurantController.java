@@ -64,27 +64,27 @@ public class RestaurantController {
         printEventBadge();
     }
 
-    public void printPreviewMessage() {
+    private void printPreviewMessage() {
         outputView.printBenefitPreview();
     }
 
-    public void printOrders() {
+    private void printOrders() {
         outputView.printOrders(restaurantService.getOrderList());
     }
 
-    public void printTotalOrderAmountWithoutDiscount() {
+    private void printTotalOrderAmountWithoutDiscount() {
         outputView.printTotalOrderAmountWithoutDiscount(restaurantService.getTotalOrderAmount());
     }
 
-    public void printGiveawayMenu() {
+    private void printGiveawayMenu() {
         outputView.printGiveawayMenu(restaurantService.getGiveaway());
     }
 
-    public void printTotalBenefitAmount() {
+    private void printTotalBenefitAmount() {
         outputView.printTotalBenefitAmount(restaurantService.getTotalBenefitAmount());
     }
 
-    public void printBenefits() {
+    private void printBenefits() {
         if (restaurantService.getBenefits().size() == 0) {
             outputView.printBenefits();
             return;
@@ -92,7 +92,7 @@ public class RestaurantController {
         outputView.printBenefits(restaurantService.getBenefits());
     }
 
-    public void printExpectedPaymentAmount() {
+    private void printExpectedPaymentAmount() {
         outputView.printExpectedPaymentAmount(
                 expectedPaymentAmount(
                         restaurantService.getTotalOrderAmount(),
@@ -104,7 +104,7 @@ public class RestaurantController {
         return orderAmount + benefitAmount;
     }
 
-    public void printEventBadge() {
+    private void printEventBadge() {
         outputView.printEventBadge(restaurantService.getBadge());
     }
 }
