@@ -7,9 +7,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class VisitDate {
-    private static final int THIS_YEAR = 2023;
-    private static final int THIS_MONTH = 12;
-    private static final int CHRISTMAS_DAY = 25;
     private final int visitDate;
 
     private VisitDate(int visitDate) {
