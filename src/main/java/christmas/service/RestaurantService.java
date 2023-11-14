@@ -46,7 +46,7 @@ public class RestaurantService {
     }
 
     private List<String> splitCustomerOrders(String customerOrder) {
-        return Arrays.stream(customerOrder.split(",")).toList();
+        return Arrays.stream(customerOrder.split(Separator.ORDER_SEPARATOR.getSeparator())).toList();
     }
 
     private List<Order> processCreateOrderList(Map<String, Integer> splittedMenuAndNum) {

@@ -31,7 +31,7 @@ public class MenuAndNumValidator extends Validator {
     }
 
     private List<String> splitOrders(String orders) {
-        return Arrays.stream(orders.split(ORDER_SEPARATOR)).toList();
+        return Arrays.stream(orders.split(Separator.ORDER_SEPARATOR.getSeparator())).toList();
     }
 
     private boolean isValidOrderFormat(String order) {
@@ -65,7 +65,7 @@ public class MenuAndNumValidator extends Validator {
     }
 
     private static String[] splitMenuNameAndNumWithSeparator(String menuAndNum) {
-        return menuAndNum.split(MENU_AND_NUM_SEPARATOR);
+        return menuAndNum.split(Separator.MENU_NAME_NUM_SEPARATOR.getSeparator());
     }
 
     private static void validateDuplicateMenu(int customerOrderSize, int splittedOrderSize) {
