@@ -1,7 +1,9 @@
 package christmas.controller;
 
+import christmas.domain.customer.CustomerInfo;
 import christmas.domain.customer.VisitDate;
 import christmas.domain.order.Orders;
+import christmas.service.EventService;
 import christmas.service.RestaurantService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -10,6 +12,7 @@ public class RestaurantController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RestaurantService restaurantService;
+    private EventService eventService;
 
     public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
         this.inputView = inputView;
@@ -20,6 +23,9 @@ public class RestaurantController {
     public void run() {
         inputView.printInitialMessage();
         createCustomerInfo();
+        eventService = EventService.of(
+                getCustomerInfoFromRestaurantService()
+        );
         applyDiscount();
         printApplyEvent();
     }
@@ -49,8 +55,12 @@ public class RestaurantController {
         }
     }
 
+    private CustomerInfo getCustomerInfoFromRestaurantService() {
+        return restaurantService.getCustomerInfo();
+    }
+
     public void applyDiscount() {
-        restaurantService.applyDiscount();
+        eventService.applyDiscount();
     }
 
     public void printApplyEvent() {
@@ -69,34 +79,34 @@ public class RestaurantController {
     }
 
     private void printOrders() {
-        outputView.printOrders(restaurantService.getOrderList());
+        outputView.printOrders(eventService.getOrderList());
     }
 
     private void printTotalOrderAmountWithoutDiscount() {
-        outputView.printTotalOrderAmountWithoutDiscount(restaurantService.getTotalOrderAmount());
+        outputView.printTotalOrderAmountWithoutDiscount(eventService.getTotalOrderAmount());
     }
 
     private void printGiveawayMenu() {
-        outputView.printGiveawayMenu(restaurantService.getGiveaway());
+        outputView.printGiveawayMenu(eventService.getGiveaway());
     }
 
     private void printTotalBenefitAmount() {
-        outputView.printTotalBenefitAmount(restaurantService.getTotalBenefitAmount());
+        outputView.printTotalBenefitAmount(eventService.getTotalBenefitAmount());
     }
 
     private void printBenefits() {
-        if (restaurantService.getBenefits().size() == 0) {
+        if (eventService.getBenefits().size() == 0) {
             outputView.printBenefits();
             return;
         }
-        outputView.printBenefits(restaurantService.getBenefits());
+        outputView.printBenefits(eventService.getBenefits());
     }
 
     private void printExpectedPaymentAmount() {
         outputView.printExpectedPaymentAmount(
                 expectedPaymentAmount(
-                        restaurantService.getTotalOrderAmount(),
-                        restaurantService.getTotalDiscountAmount()
+                        eventService.getTotalOrderAmount(),
+                        eventService.getTotalDiscountAmount()
                 ));
     }
 
@@ -105,6 +115,6 @@ public class RestaurantController {
     }
 
     private void printEventBadge() {
-        outputView.printEventBadge(restaurantService.getBadge());
+        outputView.printEventBadge(eventService.getBadge());
     }
 }

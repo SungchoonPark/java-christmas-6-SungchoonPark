@@ -22,12 +22,10 @@ public class RestaurantService {
     private CustomerInfo customerInfo;
     private final Menus menus;
     private final OrderStatus orderStatus;
-    private final EventHandler eventHandler;
 
     public RestaurantService() {
         menus = Menus.getInstance();
         orderStatus = new OrderStatus();
-        eventHandler = new EventHandler(new EventStatus());
     }
 
     public VisitDate createVisitDate(int visitDate) {
@@ -92,47 +90,7 @@ public class RestaurantService {
         return menuByMenuName.get();
     }
 
-    public void applyDiscount() {
-        eventHandler.applyDiscount(customerInfo);
-    }
-
-    public int getTotalBenefitAmount() {
-        if (customerInfo.isOverMinAmount()) {
-            return eventHandler.getTotalBenefitAmount();
-        }
-        return 0;
-    }
-
-    public Map<String, Integer> getBenefits() {
-        if (customerInfo.isOverMinAmount()) {
-            return eventHandler.getBenefits();
-        }
-        return Collections.emptyMap();
-    }
-
-    public Map<String, Integer> getOrderList() {
-        return customerInfo.getOrderList();
-    }
-
-    public String getGiveaway() {
-        if (customerInfo.isApplyGiveawayEvent()) {
-            return "샴페인 1개";
-        }
-        return "없음";
-    }
-
-    public int getTotalOrderAmount() {
-        return customerInfo.getTotalOrderAmount();
-    }
-
-    public int getTotalDiscountAmount() {
-        if (customerInfo.isOverMinAmount()) {
-            return eventHandler.getTotalDiscountAmount();
-        }
-        return 0;
-    }
-
-    public String getBadge() {
-        return Badge.getBadge(eventHandler.getTotalBenefitAmount());
+    public CustomerInfo getCustomerInfo() {
+        return customerInfo;
     }
 }
