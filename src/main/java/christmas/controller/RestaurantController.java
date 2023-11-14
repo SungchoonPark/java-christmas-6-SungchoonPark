@@ -7,9 +7,9 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class RestaurantController {
-    private InputView inputView;
-    private OutputView outputView;
-    private RestaurantService restaurantService;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RestaurantService restaurantService;
 
     public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
         this.inputView = inputView;

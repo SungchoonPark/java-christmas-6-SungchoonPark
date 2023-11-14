@@ -9,7 +9,7 @@ public class VisitDate {
     private static final int THIS_YEAR = 2023;
     private static final int THIS_MONTH = 12;
     private static final int CHRISTMAS_DAY = 25;
-    private int visitDate;
+    private final int visitDate;
 
     private VisitDate(int visitDate) {
         DateValidator.validateVisitDateBound(visitDate);
@@ -18,10 +18,6 @@ public class VisitDate {
 
     public static VisitDate from(int visitDate) {
         return new VisitDate(visitDate);
-    }
-
-    public int getVisitDate() {
-        return visitDate;
     }
 
     public DayOfWeek getDayOfWeek() {

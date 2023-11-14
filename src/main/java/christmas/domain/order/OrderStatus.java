@@ -2,11 +2,12 @@ package christmas.domain.order;
 
 import christmas.constant.MenuType;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
 public class OrderStatus {
-    private Map<MenuType, Integer> orderMenuTypeAndNum;
+    private final Map<MenuType, Integer> orderMenuTypeAndNum;
 
     public OrderStatus() {
         orderMenuTypeAndNum = new EnumMap<>(MenuType.class);

@@ -6,8 +6,8 @@ public enum EventType {
     WEEKENDS("주말 할인: ", -2023),
     SPECIAL_DAY("특별 할인: ", -1000),
     GIVE("증정 이벤트: ", -25000);
-    private String eventName;
-    private int amount;
+    private final String eventName;
+    private final int amount;
 
     EventType(String eventName, int amount) {
         this.eventName = eventName;

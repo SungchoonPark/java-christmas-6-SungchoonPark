@@ -9,8 +9,8 @@ import java.util.Map;
 public class CustomerInfo {
     private static final int MIN_EVENT_APPLY_AMOUNT = 10000;
 
-    private VisitDate visitDate;
-    private Orders orders;
+    private final VisitDate visitDate;
+    private final Orders orders;
 
     private CustomerInfo(VisitDate visitDate, Orders orders) {
         this.visitDate = visitDate;

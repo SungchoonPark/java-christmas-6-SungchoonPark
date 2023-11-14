@@ -5,7 +5,6 @@ import christmas.constant.MenuType;
 import christmas.domain.customer.CustomerInfo;
 import christmas.domain.event.EventStatus;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class EventHandler {
@@ -62,6 +61,7 @@ public class EventHandler {
     public void applyWeekendEvent(CustomerInfo customerInfo) {
         updateEventNum(EventType.WEEKENDS, MenuType.MAIN, customerInfo);
     }
+
     /***
      *  할인 전 총 주문금액이 12만원 이상이면, 샴페인 1개 증정
      */
@@ -90,14 +90,14 @@ public class EventHandler {
     }
 
     /***
-     * 각 이벤트의 할인액 구하기
+     * 적용된 이벤트의 이름과 금액 가져오기
      */
     public Map<String, Integer> getBenefits() {
         return eventStatus.getEachApplyEvent();
     }
 
     /***
-     * 할인 총액 구하기
+     * 혜택 총액 구하기
      */
     public int getTotalBenefitAmount() {
         return eventStatus.getTotalBenefitAmount();

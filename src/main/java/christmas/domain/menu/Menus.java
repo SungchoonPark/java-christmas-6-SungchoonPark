@@ -5,7 +5,7 @@ import christmas.constant.MenuType;
 import java.util.*;
 
 public class Menus {
-    private List<Menu> menus;
+    private final List<Menu> menus;
     private static Menus instance;
 
     private Menus(List<Menu> menus) {

@@ -19,7 +19,7 @@ import java.util.*;
 
 public class RestaurantService {
     private CustomerInfo customerInfo;
-    private Menus menus;
+    private final Menus menus;
     private final OrderStatus orderStatus;
     private final EventHandler eventHandler;
 
