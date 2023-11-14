@@ -8,6 +8,8 @@ import christmas.service.RestaurantService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
+import java.util.Collections;
+
 public class RestaurantController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -100,7 +102,7 @@ public class RestaurantController {
 
     private void printBenefits() {
         if (eventService.getBenefits().size() == 0) {
-            outputView.printBenefits();
+            outputView.printBenefits(Collections.emptyMap());
             return;
         }
         outputView.printBenefits(eventService.getBenefits());
