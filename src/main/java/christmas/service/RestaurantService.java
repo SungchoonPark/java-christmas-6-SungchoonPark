@@ -97,7 +97,7 @@ public class RestaurantService {
         if (customerInfo.isOverMinAmount()) {
             return eventHandler.getBenefits();
         }
-        return null;
+        return Collections.emptyMap();
     }
 
     public Map<String, Integer> getOrderList() {

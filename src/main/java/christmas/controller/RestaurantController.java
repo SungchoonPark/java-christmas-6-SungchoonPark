@@ -85,7 +85,7 @@ public class RestaurantController {
     }
 
     public void printBenefits() {
-        if (restaurantService.getBenefits() == null) {
+        if (restaurantService.getBenefits().size() == 0) {
             outputView.printBenefits();
             return;
         }
