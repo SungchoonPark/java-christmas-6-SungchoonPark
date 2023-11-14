@@ -24,7 +24,11 @@ public class RestaurantController {
         printApplyEvent();
     }
 
-    public VisitDate createVisitDate() {
+    public void createCustomerInfo() {
+        restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
+    }
+
+    private VisitDate createVisitDate() {
         while (true) {
             try {
                 return restaurantService.createVisitDate(Integer.parseInt(inputView.readVisitDate()));
@@ -34,19 +38,15 @@ public class RestaurantController {
         }
     }
 
-    public Orders createOrdersFromMenuAndNum() {
+    private Orders createOrdersFromMenuAndNum() {
         while (true) {
             try {
                 String inputMenuAndNum = inputView.readMenuAndNum();
-                return restaurantService.createOrders(inputMenuAndNum);
+                return restaurantService.processCreateOrders(inputMenuAndNum);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
-    }
-
-    public void createCustomerInfo() {
-        restaurantService.createCustomerInfo(createVisitDate(), createOrdersFromMenuAndNum());
     }
 
     public void applyDiscount() {
