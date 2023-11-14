@@ -11,9 +11,8 @@ public class OrderStatus {
 
     public OrderStatus() {
         orderMenuTypeAndNum = new EnumMap<>(MenuType.class);
-        for (MenuType menuType : MenuType.values()) {
-            orderMenuTypeAndNum.put(menuType, 0);
-        }
+        Arrays.stream(MenuType.values())
+                .forEach(menuType -> orderMenuTypeAndNum.put(menuType, 0));
     }
 
     public void updateMenuTypeNum(MenuType menuType) {

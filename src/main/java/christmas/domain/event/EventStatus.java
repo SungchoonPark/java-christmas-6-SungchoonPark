@@ -23,12 +23,9 @@ public class EventStatus {
     }
 
     public int getTotalBenefitAmount() {
-        int totalAmount = 0;
-        for (EventType eventType : EventType.values()) {
-            totalAmount += getEventAmount(eventType);
-        }
-
-        return totalAmount;
+        return Arrays.stream(EventType.values())
+                .mapToInt(this::getEventAmount)
+                .sum();
     }
 
     public Map<String, Integer> getEachApplyEvent() {
