@@ -4,7 +4,6 @@ import christmas.constant.EventType;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 

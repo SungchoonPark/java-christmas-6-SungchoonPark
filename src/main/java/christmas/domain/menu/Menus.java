@@ -38,11 +38,6 @@ public class Menus {
         return initialMenus;
     }
 
-    public List<Menu> getMenus() {
-        return Collections.unmodifiableList(menus);
-    }
-
-    // menuName으로 Menu객체 리턴해주는 메서드 필요 -> 여기서 메뉴판에 없는지도 체크
     public Optional<Menu> getMenuByMenuName(String menuName) {
         return menus.stream()
                 .filter(menu -> menu.getMenuName().equals(menuName))
