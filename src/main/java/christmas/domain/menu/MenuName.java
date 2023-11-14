@@ -2,7 +2,7 @@ package christmas.domain.menu;
 
 
 public class MenuName {
-    private String menuName;
+    private final String menuName;
 
     private MenuName(String menuName) {
         this.menuName = menuName;

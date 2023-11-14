@@ -1,7 +1,7 @@
 package christmas.domain.order;
 
 public class MenuNum {
-    private int menuNum;
+    private final int menuNum;
 
     private MenuNum(int menuNum) {
         this.menuNum = menuNum;

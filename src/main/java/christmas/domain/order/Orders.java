@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Orders {
-    private List<Order> orders;
+    private final List<Order> orders;
 
     private Orders(List<Order> orders) {
         this.orders = orders;

@@ -3,9 +3,9 @@ package christmas.domain.menu;
 import christmas.constant.MenuType;
 
 public class Menu {
-    private MenuName menuName;
-    private MenuPrice menuPrice;
-    private MenuType menuType;
+    private final MenuName menuName;
+    private final MenuPrice menuPrice;
+    private final MenuType menuType;
 
     private Menu(String menuName, int menuPrice, MenuType menuType) {
         this.menuName = MenuName.from(menuName);

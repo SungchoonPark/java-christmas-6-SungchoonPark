@@ -4,8 +4,8 @@ import christmas.constant.MenuType;
 import christmas.domain.menu.Menu;
 
 public class Order {
-    private Menu menu;
-    private MenuNum menuNum;
+    private final Menu menu;
+    private final MenuNum menuNum;
 
     private Order(Menu menu, MenuNum menuNum) {
         this.menu = menu;

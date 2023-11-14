@@ -1,7 +1,7 @@
 package christmas.domain.menu;
 
 public class MenuPrice {
-    private int menuPrice;
+    private final int menuPrice;
 
     private MenuPrice(int menuPrice) {
         this.menuPrice = menuPrice;
