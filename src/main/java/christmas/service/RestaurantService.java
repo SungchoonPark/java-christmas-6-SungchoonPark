@@ -115,6 +115,13 @@ public class RestaurantService {
         return customerInfo.getTotalOrderAmount();
     }
 
+    public int getTotalDiscountAmount() {
+        if(customerInfo.isOverMinAmount()) {
+            return eventHandler.getTotalDiscountAmount();
+        }
+        return 0;
+    }
+
     public String getBadge() {
         return Badge.getBadge(eventHandler.getTotalBenefitAmount());
     }

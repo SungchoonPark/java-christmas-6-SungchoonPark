@@ -28,6 +28,13 @@ public class EventStatus {
                 .sum();
     }
 
+    public int getTotalDiscountAmount() {
+        return Arrays.stream(EventType.values())
+                .filter(eventType -> eventType != EventType.GIVE)
+                .mapToInt(this::getEventAmount)
+                .sum();
+    }
+
     public Map<String, Integer> getEachApplyEvent() {
         return Arrays.stream(EventType.values())
                 .filter(eventType -> getEventAmount(eventType) != 0)

@@ -103,4 +103,11 @@ public class EventHandler {
         return eventStatus.getTotalBenefitAmount();
     }
 
+    /***
+     * 할인 총액 구하기
+     */
+    public int getTotalDiscountAmount() {
+        return eventStatus.getTotalDiscountAmount();
+    }
+
 }

@@ -96,7 +96,7 @@ public class RestaurantController {
         outputView.printExpectedPaymentAmount(
                 expectedPaymentAmount(
                         restaurantService.getTotalOrderAmount(),
-                        restaurantService.getTotalBenefitAmount()
+                        restaurantService.getTotalDiscountAmount()
                 ));
     }
 
