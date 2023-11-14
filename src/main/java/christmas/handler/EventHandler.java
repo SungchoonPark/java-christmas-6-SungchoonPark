@@ -14,8 +14,12 @@ public class EventHandler {
      */
     private final EventStatus eventStatus;
 
-    public EventHandler(EventStatus eventStatus) {
+    private EventHandler(EventStatus eventStatus) {
         this.eventStatus = eventStatus;
+    }
+
+    public static EventHandler from(EventStatus eventStatus) {
+        return new EventHandler(eventStatus);
     }
 
     public void applyDiscount(CustomerInfo customerInfo) {

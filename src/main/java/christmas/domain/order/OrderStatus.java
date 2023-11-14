@@ -9,10 +9,14 @@ import java.util.Map;
 public class OrderStatus {
     private final Map<MenuType, Integer> orderMenuTypeAndNum;
 
-    public OrderStatus() {
+    private OrderStatus() {
         orderMenuTypeAndNum = new EnumMap<>(MenuType.class);
         Arrays.stream(MenuType.values())
                 .forEach(menuType -> orderMenuTypeAndNum.put(menuType, 0));
+    }
+
+    public static OrderStatus createInstance() {
+        return new OrderStatus();
     }
 
     public void updateMenuTypeNum(MenuType menuType) {

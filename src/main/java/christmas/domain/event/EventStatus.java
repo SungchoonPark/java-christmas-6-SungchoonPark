@@ -10,12 +10,16 @@ import java.util.stream.Collectors;
 public class EventStatus {
     private final Map<EventType, Integer> eventStatus;
 
-    public EventStatus() {
+    private EventStatus() {
         eventStatus = new EnumMap<>(EventType.class);
 
         for (EventType event : EventType.values()) {
             eventStatus.put(event, 0);
         }
+    }
+
+    public static EventStatus createInstance() {
+        return new EventStatus();
     }
 
     public void updateEventTypeNum(EventType eventType, int updateNum) {

@@ -23,9 +23,13 @@ public class RestaurantService {
     private final Menus menus;
     private final OrderStatus orderStatus;
 
-    public RestaurantService() {
+    private RestaurantService() {
         menus = Menus.getInstance();
-        orderStatus = new OrderStatus();
+        orderStatus = OrderStatus.createInstance();
+    }
+
+    public static RestaurantService createInstance() {
+        return new RestaurantService();
     }
 
     public VisitDate createVisitDate(int visitDate) {

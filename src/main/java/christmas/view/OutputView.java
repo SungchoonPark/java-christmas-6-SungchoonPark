@@ -7,7 +7,11 @@ import java.util.Map;
 public class OutputView {
     private static final String ERROR = "[ERROR] ";
 
-    public OutputView() {
+    private OutputView() {
+    }
+
+    public static OutputView createInstance() {
+        return new OutputView();
     }
 
     public void printErrorMessage(IllegalArgumentException e) {

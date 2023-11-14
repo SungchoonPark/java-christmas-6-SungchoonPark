@@ -13,7 +13,7 @@ public class EventService {
     private final CustomerInfo customerInfo;
 
     private EventService(CustomerInfo customerInfo) {
-        eventHandler = new EventHandler(new EventStatus());
+        eventHandler = EventHandler.from(EventStatus.createInstance());
         this.customerInfo = customerInfo;
     }
 

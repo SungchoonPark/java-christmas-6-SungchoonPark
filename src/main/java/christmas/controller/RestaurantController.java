@@ -14,10 +14,14 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
     private EventService eventService;
 
-    public RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
+    private RestaurantController(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.restaurantService = restaurantService;
+    }
+
+    public static RestaurantController of(InputView inputView, OutputView outputView, RestaurantService restaurantService) {
+        return new RestaurantController(inputView, outputView, restaurantService);
     }
 
     public void run() {

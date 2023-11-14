@@ -12,10 +12,10 @@ public class Application {
         // TODO: 프로그램 구현
         RestaurantController restaurantController;
 
-        restaurantController = new RestaurantController(
-                new InputView(),
-                new OutputView(),
-                new RestaurantService()
+        restaurantController = RestaurantController.of(
+                InputView.createInstance(),
+                OutputView.createInstance(),
+                RestaurantService.createInstance()
         );
 
         restaurantController.run();
