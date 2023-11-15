@@ -4,7 +4,6 @@ import christmas.constant.MenuType;
 import christmas.constant.NumConstant;
 import christmas.domain.order.Orders;
 
-import java.time.DayOfWeek;
 import java.util.Map;
 
 public class CustomerInfo {
