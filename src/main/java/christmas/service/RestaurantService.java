@@ -84,7 +84,7 @@ public class RestaurantService {
         customerInfo = CustomerInfo.of(visitDate, orders);
     }
 
-    public Menu getMenuByMenuName(String menuName) {
+    private Menu getMenuByMenuName(String menuName) {
         Optional<Menu> menuByMenuName = menus.getMenuByMenuName(menuName);
         if (menuByMenuName.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
