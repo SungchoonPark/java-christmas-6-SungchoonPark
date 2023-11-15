@@ -1,8 +1,6 @@
 package christmas;
 
 import christmas.controller.RestaurantController;
-import christmas.handler.EventHandler;
-import christmas.service.EventService;
 import christmas.service.RestaurantService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
