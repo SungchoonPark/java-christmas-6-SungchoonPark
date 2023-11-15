@@ -40,25 +40,36 @@ public class MenuAndNumValidator extends Validator {
     }
 
     public static Map<String, Integer> validateCustomerOrders(List<String> customerOrders) {
-        Map<String, Integer> splittedMenuAndNum = new HashMap<>();
-        int menuNumCnt = NumConstant.ZERO.getValue();
+        Map<String, Integer> splittedMenuAndNum;
+        int menuNumCnt;
 
-        processCustomerOrders(customerOrders, splittedMenuAndNum, menuNumCnt);
+        menuNumCnt = getMenuNumUseCustomerOrder(customerOrders);
+        splittedMenuAndNum = getSplitMenuNameAndNum(customerOrders);
         validateMenuNumBound(menuNumCnt);
         validateDuplicateMenu(customerOrders.size(), splittedMenuAndNum.size());
 
         return splittedMenuAndNum;
     }
 
-    private static void processCustomerOrders(List<String> customerOrders, Map<String, Integer> splittedMenuAndNum, int menuNumCnt) {
+    private static int getMenuNumUseCustomerOrder(List<String> customerOrders) {
+        int menuNumCnt = 0;
         for (String menu : customerOrders) {
             String[] split = splitMenuNameAndNumWithSeparator(menu);
-            splittedMenuAndNum.put(split[0], Integer.parseInt(split[1]));
             menuNumCnt += Integer.parseInt(split[1]);
         }
+        return menuNumCnt;
     }
 
-    public static void validateMenuNumBound(int menuNum) {
+    private static Map<String, Integer> getSplitMenuNameAndNum(List<String> customerOrders) {
+        Map<String, Integer> splitMenuAndNum = new HashMap<>();
+        for (String menu : customerOrders) {
+            String[] split = splitMenuNameAndNumWithSeparator(menu);
+            splitMenuAndNum.put(split[0], Integer.parseInt(split[1]));
+        }
+        return splitMenuAndNum;
+    }
+
+    private static void validateMenuNumBound(int menuNum) {
         if(menuNum > NumConstant.MAX_ORDER_NUM.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER_ERROR.getMessage());
         }
