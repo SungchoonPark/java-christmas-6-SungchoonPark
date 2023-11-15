@@ -17,13 +17,13 @@ public enum Badge {
 
     public static String getBadge(int totalBenefitAmount) {
         totalBenefitAmount = Math.abs(totalBenefitAmount);
-        if(totalBenefitAmount >= 5000 && totalBenefitAmount < 10000) {
+        if(totalBenefitAmount >= NumConstant.STAR_BADGE_AMOUNT.getValue() && totalBenefitAmount < NumConstant.TREE_BADGE_AMOUNT.getValue()) {
             return STAR.name;
         }
-        if(totalBenefitAmount >= 10000 && totalBenefitAmount < 20000) {
+        if(totalBenefitAmount >= NumConstant.TREE_BADGE_AMOUNT.getValue() && totalBenefitAmount < NumConstant.SANTA_BADGE_AMOUNT.getValue()) {
             return TREE.name;
         }
-        if(totalBenefitAmount >= 20000) {
+        if(totalBenefitAmount >= NumConstant.SANTA_BADGE_AMOUNT.getValue()) {
             return SANTA.name;
         }
         return MISS.name;

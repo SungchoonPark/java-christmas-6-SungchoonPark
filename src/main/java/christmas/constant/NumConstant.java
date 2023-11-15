@@ -8,7 +8,11 @@ public enum NumConstant {
     THIS_MONTH(12),
     CHRISTMAS_DAY(25),
     ZERO(0),
-    MAX_ORDER_NUM(20);
+    MAX_ORDER_NUM(20),
+    STAR_BADGE_AMOUNT(5000),
+    TREE_BADGE_AMOUNT(10000),
+    SANTA_BADGE_AMOUNT(20000),
+    ;
 
     private int value;
 
