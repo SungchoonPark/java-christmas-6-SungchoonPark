@@ -18,6 +18,10 @@ public class EventStatus {
         }
     }
 
+    public int getEventApplyNum(EventType eventType) {
+        return eventStatus.get(eventType);
+    }
+
     public static EventStatus createInstance() {
         return new EventStatus();
     }
